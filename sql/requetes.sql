@@ -77,3 +77,6 @@ Résultat : FOREIGN KEY constraint failed
 -- c) supprimer une catégorie qui contient des produits
 DELETE FROM categories WHERE id = 1;
 
+q4.1: 
+INSERT INTO categories (nom, description) 
+VALUES ('Électroménager', 'Petits appareils');
