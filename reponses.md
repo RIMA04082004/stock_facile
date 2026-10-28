@@ -33,3 +33,15 @@ Parce qu'il permet de faire des calculs ou des conversions avant de créer l'obj
 
 2. Pourquoi (map['prix'] as num).toDouble() ?
 Parce que SQLite peut renvoyer un prix sous forme de nombre entier (ex: 5) ou décimal (ex: 5.5). Si on force en double, l'entier fait planter l'application. En passant par num, on accepte les deux, puis on force en décimal.
+
+q3.1:l
+le code SQL dans database_helper.dart est exactement le même que celui exporté dans schema.sqlLa seule différence est la forme : dans Flutter, le code est mis entre triple apostrophes (''') pour être exécuté par Dart, mais la structure de la base sera identique.
+
+q3.2: 
+Deux DatabaseHelper() : Ça crée un seul objet au total. Grâce au factory, la 1ère fois ça le crée, les fois d'après ça renvoie toujours le même (c'est le singleton).
+
+L'opérateur ??= : Ça veut dire "si c'est null, alors on l'initialise". Si la base n'est pas encore ouverte, on l'ouvre.
+
+Le PRAGMA dans onConfigure : Parce que onConfigure s'exécute à chaque ouverture de la base. Si on le mettait dans onCreate, ça ne marcherait qu'une seule fois (à la création), et SQLite oublierait d'activer les clés étrangères après.
+
+Combien de fois onCreate : Une seule fois, juste au tout premier lancement quand le fichier de la base n'existe pas encore.
